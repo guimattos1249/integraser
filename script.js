@@ -62,12 +62,51 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
 
-document.querySelectorAll('[data-accordion] details').forEach((detail) => {
-  detail.addEventListener('toggle', () => {
-    if (!detail.open) return;
-    document.querySelectorAll('[data-accordion] details').forEach((other) => {
-      if (other !== detail) other.open = false;
+const accordionItems = [...document.querySelectorAll('[data-accordion] details')];
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const accordionAnimations = new WeakMap();
+
+const animateAccordion = (detail, open) => {
+  const summary = detail.querySelector('summary');
+  if (!summary) return Promise.resolve();
+
+  accordionAnimations.get(detail)?.cancel();
+
+  const startHeight = `${detail.offsetHeight}px`;
+  if (open) detail.open = true;
+  const endHeight = `${open ? detail.offsetHeight : summary.offsetHeight}px`;
+
+  if (!open) detail.classList.add('is-closing');
+
+  const animation = detail.animate(
+    { height: [startHeight, endHeight] },
+    { duration: prefersReducedMotion.matches ? 180 : 420, easing: 'cubic-bezier(.22, 1, .36, 1)' }
+  );
+  accordionAnimations.set(detail, animation);
+
+  return animation.finished
+    .catch(() => undefined)
+    .then(() => {
+      if (accordionAnimations.get(detail) !== animation) return;
+      detail.open = open;
+      detail.style.height = '';
+      detail.classList.remove('is-closing');
+      accordionAnimations.delete(detail);
     });
+};
+
+accordionItems.forEach((detail) => {
+  detail.querySelector('summary')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    const shouldOpen = !detail.open;
+
+    if (shouldOpen) {
+      accordionItems.forEach((other) => {
+        if (other !== detail && other.open) animateAccordion(other, false);
+      });
+    }
+
+    animateAccordion(detail, shouldOpen);
   });
 });
 
