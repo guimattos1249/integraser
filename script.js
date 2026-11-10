@@ -2,11 +2,15 @@ const header = document.querySelector('[data-header]');
 const menu = document.querySelector('[data-menu]');
 const menuToggle = document.querySelector('[data-menu-toggle]');
 const menuClose = document.querySelector('[data-menu-close]');
+const scrollTopFab = document.querySelector('[data-scroll-top]');
 const toast = document.querySelector('[data-toast]');
 
-const setHeader = () => header?.classList.toggle('scrolled', window.scrollY > 16);
-setHeader();
-window.addEventListener('scroll', setHeader, { passive: true });
+const setScrollState = () => {
+  header?.classList.toggle('scrolled', window.scrollY > 16);
+  scrollTopFab?.classList.toggle('visible', window.scrollY > 420);
+};
+setScrollState();
+window.addEventListener('scroll', setScrollState, { passive: true });
 
 const setMenu = (open) => {
   menu.classList.toggle('open', open);
@@ -19,8 +23,16 @@ const setMenu = (open) => {
 menuToggle?.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
 menuClose?.addEventListener('click', () => setMenu(false));
 
-menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', (event) => {
+  const targetId = link.getAttribute('href');
+  const target = targetId?.startsWith('#') ? document.querySelector(targetId) : null;
+
   setMenu(false);
+  if (!target) return;
+
+  event.preventDefault();
+  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  window.requestAnimationFrame(() => target.scrollIntoView({ behavior, block: 'start' }));
 }));
 
 window.addEventListener('keydown', (event) => {
@@ -32,6 +44,11 @@ window.addEventListener('keydown', (event) => {
 
 window.addEventListener('resize', () => {
   if (window.innerWidth > 1020 && menu?.classList.contains('open')) setMenu(false);
+});
+
+scrollTopFab?.addEventListener('click', () => {
+  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  window.scrollTo({ top: 0, behavior });
 });
 
 const observer = new IntersectionObserver((entries) => {

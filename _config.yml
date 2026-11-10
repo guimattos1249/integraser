@@ -1,0 +1,4 @@
+exclude:
+  - "Identidade Corporativa Espaço IntegraSer Guaratingueta"
+  - scripts
+  - tmp
