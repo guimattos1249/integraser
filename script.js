@@ -1,24 +1,38 @@
 const header = document.querySelector('[data-header]');
 const menu = document.querySelector('[data-menu]');
 const menuToggle = document.querySelector('[data-menu-toggle]');
+const menuClose = document.querySelector('[data-menu-close]');
 const toast = document.querySelector('[data-toast]');
 
 const setHeader = () => header?.classList.toggle('scrolled', window.scrollY > 16);
 setHeader();
 window.addEventListener('scroll', setHeader, { passive: true });
 
-menuToggle?.addEventListener('click', () => {
-  const open = !menu.classList.contains('open');
+const setMenu = (open) => {
   menu.classList.toggle('open', open);
+  header?.classList.toggle('menu-active', open);
   document.body.classList.toggle('menu-open', open);
-  menuToggle.setAttribute('aria-expanded', String(open));
-});
+  menuToggle?.setAttribute('aria-expanded', String(open));
+  menuToggle?.querySelector('.sr-only').replaceChildren(open ? 'Fechar menu' : 'Abrir menu');
+};
+
+menuToggle?.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+menuClose?.addEventListener('click', () => setMenu(false));
 
 menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-  menu.classList.remove('open');
-  document.body.classList.remove('menu-open');
-  menuToggle?.setAttribute('aria-expanded', 'false');
+  setMenu(false);
 }));
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && menu?.classList.contains('open')) {
+    setMenu(false);
+    menuToggle?.focus();
+  }
+});
+
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 1020 && menu?.classList.contains('open')) setMenu(false);
+});
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
