@@ -1,4 +1,4 @@
-.team-page { background: #fffaf2; }
+.team-page { max-width: 100%; overflow-x: clip; background: #fffaf2; }
 .team-page .site-header { background: rgba(255,250,242,.94); backdrop-filter: blur(18px); box-shadow: 0 8px 35px rgba(18,95,87,.08); }
 
 .team-intro { padding-top: 160px; background: linear-gradient(145deg, #fffaf2 0%, #f3f8f5 100%); }
@@ -36,30 +36,32 @@
 .initials-mark span { font-family: Georgia, "Times New Roman", serif; font-size: 4.5rem; letter-spacing: -.08em; transform: translateX(-4px); }
 .initials-symbol { position: absolute; right: -95px; bottom: -80px; width: 310px; height: 310px; border-radius: 50%; opacity: .13; mix-blend-mode: screen; }
 
-.practice { background: #103e3a; color: var(--white); }
-.practice-grid { display: grid; grid-template-columns: .9fr 1.15fr; gap: 100px; align-items: start; }
+.practice { max-width: 100%; overflow: clip; background: #103e3a; color: var(--white); }
+.practice-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.15fr); gap: 100px; align-items: start; min-width: 0; }
 .practice-heading { position: sticky; top: 140px; }
 .practice-heading h2 { margin: 18px 0 24px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.8rem, 4.6vw, 4.7rem); font-weight: 500; line-height: 1.02; letter-spacing: -.04em; }
 .practice-heading > p:not(.eyebrow):not(.professional-note) { color: rgba(255,255,255,.7); }
 .professional-note { margin-top: 32px; padding: 22px 0 0; border-top: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.62); font-size: .82rem; }
-.practice-accordion { border-top: 1px solid rgba(255,255,255,.18); }
-.practice-accordion details { border-bottom: 1px solid rgba(255,255,255,.18); }
-.practice-accordion summary { display: grid; grid-template-columns: 48px 1fr 48px; align-items: center; gap: 18px; padding: 30px 0; cursor: pointer; list-style: none; }
+.practice-accordion { min-width: 0; max-width: 100%; border-top: 1px solid rgba(255,255,255,.18); }
+.practice-accordion details { min-width: 0; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,.18); }
+.practice-accordion summary { display: grid; width: 100%; min-width: 0; grid-template-columns: 48px minmax(0, 1fr) 34px; align-items: center; gap: 18px; padding: 30px 0; cursor: pointer; list-style: none; }
 .practice-accordion summary::-webkit-details-marker { display: none; }
 .practice-index { color: var(--yellow); font-size: .72rem; font-weight: 900; }
-.summary-copy { display: grid; gap: 4px; }
+.summary-copy { display: grid; min-width: 0; gap: 4px; }
 .summary-copy strong { font-family: Georgia, "Times New Roman", serif; font-size: 1.65rem; font-weight: 500; }
 .summary-copy small { color: rgba(255,255,255,.56); font-size: .78rem; font-weight: 700; letter-spacing: .04em; }
-.details-icon { position: relative; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; transition: transform .4s cubic-bezier(.22,1,.36,1), background-color .35s ease; }
-.details-icon::before, .details-icon::after { content: ""; position: absolute; top: 50%; left: 50%; width: 13px; height: 2px; background: var(--white); transform: translate(-50%,-50%); }
+.summary-copy strong, .summary-copy small { overflow-wrap: anywhere; }
+.details-icon { position: relative; justify-self: end; width: 34px; height: 34px; border-radius: 50%; background: var(--white); color: var(--green-700); transition: color .35s ease, background-color .35s ease, transform .4s cubic-bezier(.22,1,.36,1); transform-origin: center; }
+.details-icon::before, .details-icon::after { content: ""; position: absolute; top: 50%; left: 50%; width: 13px; height: 2px; border-radius: 999px; background: currentColor; transform: translate(-50%,-50%); }
 .details-icon::after { transform: translate(-50%,-50%) rotate(90deg); }
-.practice-accordion summary:hover .details-icon, .practice-accordion summary:focus-visible .details-icon { background: var(--terracotta); }
-.practice-accordion details[open] .details-icon { background: var(--terracotta); transform: rotate(45deg); }
-.practice-content { padding: 0 66px 34px; color: rgba(255,255,255,.74); opacity: 0; transform: translateY(-8px); transition: opacity .28s ease, transform .4s cubic-bezier(.22,1,.36,1); }
+.practice-accordion summary:hover .details-icon, .practice-accordion summary:focus-visible .details-icon { color: var(--white); background: var(--green-700); }
+.practice-accordion details.is-open .details-icon { transform: rotate(45deg); }
+.practice-content { min-width: 0; max-width: 100%; padding: 0 52px 34px 66px; color: rgba(255,255,255,.74); opacity: 0; transform: translateY(-8px); transition: opacity .28s ease, transform .4s cubic-bezier(.22,1,.36,1); }
 .practice-accordion details[open] .practice-content { opacity: 1; transform: none; }
 .practice-accordion details.is-closing .practice-content { opacity: 0; transform: translateY(-8px); }
 .practice-content h3 { margin: 24px 0 10px; color: var(--yellow); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
 .practice-content ul { display: grid; gap: 8px; margin: 0; padding-left: 20px; }
+.practice-content p, .practice-content li { overflow-wrap: anywhere; }
 .team-contact { background: #fffaf2; }
 .team-contact-card { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 40px; padding: 64px 70px; border-radius: 34px; background: var(--green-700); color: var(--white); }
 .team-contact-card h2 { max-width: 720px; margin: 18px 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.7rem, 4.4vw, 4.5rem); font-weight: 500; line-height: 1.02; letter-spacing: -.04em; }
@@ -67,13 +69,16 @@
 .team-page .site-footer a { text-decoration-color: rgba(242,209,127,.35); text-underline-offset: 4px; }
 
 @media (max-width: 1020px) {
+  .team-page .header-inner { min-width: 0; max-width: 100%; }
+  .team-page .brand { min-width: 0; }
+  .team-page .menu-toggle { display: block; flex: 0 0 48px; margin-left: auto; }
   .team-intro { padding-top: 135px; }
   .team-intro-heading { grid-template-columns: 1fr; gap: 22px; }
   .team-intro-heading > p:last-child { max-width: 760px; }
   .professional-card, .professional-card-initials { grid-template-columns: 285px 1fr; }
   .professional-card-initials .professional-portrait { grid-column: 1; }
   .professional-card-initials .professional-content { grid-column: 2; }
-  .practice-grid { gap: 54px; }
+  .practice-grid { min-width: 0; grid-template-columns: minmax(0, 1fr); gap: 54px; }
   .practice-heading { position: static; max-width: 760px; }
 }
 
@@ -88,11 +93,14 @@
   .professional-heading h3 { font-size: 2.75rem; }
   .professional-lead { font-size: 1.05rem; }
   .initials-portrait { min-height: 330px; }
+  .team-page .scroll-top-fab { right: 18px; }
   .practice-grid { gap: 34px; }
   .practice-heading h2 { font-size: clamp(2.55rem, 11.5vw, 3.5rem); }
-  .practice-accordion summary { grid-template-columns: 34px 1fr 42px; gap: 10px; padding: 24px 0; }
-  .summary-copy strong { font-size: 1.35rem; }
-  .practice-content { padding: 0 0 28px 44px; }
+  .practice-accordion summary { grid-template-columns: 28px minmax(0, 1fr) 34px; gap: 10px; padding: 22px 0; }
+  .summary-copy strong { font-size: 1.28rem; line-height: 1.15; }
+  .summary-copy small { font-size: .72rem; line-height: 1.35; }
+  .practice-content { padding: 0 0 28px 38px; }
+  .practice-content ul { padding-left: 18px; }
   .team-contact-card { grid-template-columns: 1fr; align-items: start; padding: 42px 26px; border-radius: 26px; }
   .team-contact-card h2 { font-size: clamp(2.45rem, 11vw, 3.3rem); }
   .team-contact-card .button { width: 100%; }

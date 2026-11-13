@@ -71,6 +71,7 @@ const animateAccordion = (detail, open) => {
   if (!summary) return Promise.resolve();
 
   accordionAnimations.get(detail)?.cancel();
+  detail.classList.toggle('is-open', open);
 
   const startHeight = `${detail.offsetHeight}px`;
   if (open) detail.open = true;
@@ -96,6 +97,8 @@ const animateAccordion = (detail, open) => {
 };
 
 accordionItems.forEach((detail) => {
+  detail.classList.toggle('is-open', detail.open);
+
   detail.querySelector('summary')?.addEventListener('click', (event) => {
     event.preventDefault();
     const shouldOpen = !detail.open;
