@@ -1,0 +1,103 @@
+.team-page { background: #fffaf2; }
+.team-page .site-header { background: rgba(255,250,242,.94); backdrop-filter: blur(18px); box-shadow: 0 8px 35px rgba(18,95,87,.08); }
+
+.team-intro { padding-top: 160px; background: linear-gradient(145deg, #fffaf2 0%, #f3f8f5 100%); }
+.team-intro-heading { display: grid; grid-template-columns: .8fr 1.25fr; column-gap: 80px; align-items: end; margin-bottom: 72px; }
+.team-intro-heading .eyebrow { grid-column: 1 / -1; }
+.team-intro-heading h1 { margin: 16px 0 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.8rem, 4.6vw, 4.8rem); font-weight: 500; line-height: 1.02; letter-spacing: -.04em; }
+.team-intro-heading > p:last-child { margin: 0 0 8px; color: var(--muted); font-size: 1.05rem; }
+.professional-list { display: grid; max-width: 1040px; gap: 28px; }
+.professional-card { display: grid; grid-template-columns: minmax(285px, .72fr) 1.45fr; min-height: 520px; overflow: hidden; border: 1px solid rgba(18,95,87,.1); border-radius: 30px; background: var(--white); box-shadow: 0 22px 58px rgba(18,95,87,.08); }
+.professional-portrait { position: relative; min-height: 520px; overflow: hidden; background: #e4f1ee; }
+.professional-portrait > img:not(.initials-symbol) { width: 100%; height: 100%; object-fit: cover; object-position: center 32%; }
+.portrait-label { position: absolute; left: 28px; bottom: 28px; z-index: 3; padding: 10px 16px; border-radius: 999px; background: rgba(16,62,58,.88); color: var(--white); font-size: .75rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; backdrop-filter: blur(10px); }
+.professional-content { display: flex; flex-direction: column; justify-content: center; padding: clamp(32px, 4vw, 54px); }
+.professional-heading { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px; }
+.profile-number { display: grid; flex: 0 0 auto; place-items: center; width: 46px; height: 46px; margin: 2px 0 0; border-radius: 50%; background: var(--green-100); color: var(--green-700); font-size: .78rem; font-weight: 900; }
+.professional-role { margin: 0 0 5px; color: var(--terracotta); font-size: .76rem; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
+.professional-heading h3 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.6rem, 4vw, 4.2rem); font-weight: 500; line-height: 1; letter-spacing: -.04em; }
+.registration { margin: 10px 0 0; color: var(--muted); font-size: .82rem; font-weight: 700; }
+.professional-lead { margin: 0 0 14px; color: var(--ink); font-size: 1.08rem; line-height: 1.5; }
+.professional-content > p:not(.professional-lead) { color: var(--muted); }
+.profile-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 24px; padding: 0; list-style: none; }
+.profile-tags li { padding: 7px 12px; border: 1px solid rgba(18,95,87,.12); border-radius: 999px; background: #f7fbfa; color: var(--green-900); font-size: .76rem; font-weight: 800; }
+.qualification-block { padding-top: 20px; border-top: 1px solid rgba(18,95,87,.12); }
+.qualification-block > p:first-child { margin: 0 0 12px; color: var(--green-900); font-size: .76rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+.qualification-block ul { display: grid; gap: 8px; margin: 0; padding-left: 20px; color: var(--muted); font-size: .9rem; }
+.qualification-block.compact > p:last-child { margin: 0; color: var(--muted); font-size: .92rem; }
+.professional-card-initials { grid-template-columns: 1.45fr minmax(285px, .72fr); }
+.professional-card-initials .professional-portrait { grid-column: 2; grid-row: 1; }
+.professional-card-initials .professional-content { grid-column: 1; grid-row: 1; }
+.initials-portrait { display: grid; place-items: center; isolation: isolate; background: linear-gradient(145deg, #125f57 0%, #2f9d8c 65%, #68b7aa 100%); }
+.initials-portrait::before, .initials-portrait::after { content: ""; position: absolute; border: 1px solid rgba(255,255,255,.22); border-radius: 50%; }
+.initials-portrait::before { width: 340px; height: 340px; }
+.initials-portrait::after { width: 240px; height: 240px; }
+.initials-mark { position: relative; z-index: 2; display: grid; place-items: center; width: 190px; height: 190px; border: 1px solid rgba(255,255,255,.35); border-radius: 50%; background: rgba(255,255,255,.11); color: var(--white); backdrop-filter: blur(8px); }
+.initials-mark span { font-family: Georgia, "Times New Roman", serif; font-size: 4.5rem; letter-spacing: -.08em; transform: translateX(-4px); }
+.initials-symbol { position: absolute; right: -95px; bottom: -80px; width: 310px; height: 310px; border-radius: 50%; opacity: .13; mix-blend-mode: screen; }
+
+.practice { background: #103e3a; color: var(--white); }
+.practice-grid { display: grid; grid-template-columns: .9fr 1.15fr; gap: 100px; align-items: start; }
+.practice-heading { position: sticky; top: 140px; }
+.practice-heading h2 { margin: 18px 0 24px; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.8rem, 4.6vw, 4.7rem); font-weight: 500; line-height: 1.02; letter-spacing: -.04em; }
+.practice-heading > p:not(.eyebrow):not(.professional-note) { color: rgba(255,255,255,.7); }
+.professional-note { margin-top: 32px; padding: 22px 0 0; border-top: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.62); font-size: .82rem; }
+.practice-accordion { border-top: 1px solid rgba(255,255,255,.18); }
+.practice-accordion details { border-bottom: 1px solid rgba(255,255,255,.18); }
+.practice-accordion summary { display: grid; grid-template-columns: 48px 1fr 48px; align-items: center; gap: 18px; padding: 30px 0; cursor: pointer; list-style: none; }
+.practice-accordion summary::-webkit-details-marker { display: none; }
+.practice-index { color: var(--yellow); font-size: .72rem; font-weight: 900; }
+.summary-copy { display: grid; gap: 4px; }
+.summary-copy strong { font-family: Georgia, "Times New Roman", serif; font-size: 1.65rem; font-weight: 500; }
+.summary-copy small { color: rgba(255,255,255,.56); font-size: .78rem; font-weight: 700; letter-spacing: .04em; }
+.details-icon { position: relative; width: 42px; height: 42px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; transition: transform .4s cubic-bezier(.22,1,.36,1), background-color .35s ease; }
+.details-icon::before, .details-icon::after { content: ""; position: absolute; top: 50%; left: 50%; width: 13px; height: 2px; background: var(--white); transform: translate(-50%,-50%); }
+.details-icon::after { transform: translate(-50%,-50%) rotate(90deg); }
+.practice-accordion summary:hover .details-icon, .practice-accordion summary:focus-visible .details-icon { background: var(--terracotta); }
+.practice-accordion details[open] .details-icon { background: var(--terracotta); transform: rotate(45deg); }
+.practice-content { padding: 0 66px 34px; color: rgba(255,255,255,.74); opacity: 0; transform: translateY(-8px); transition: opacity .28s ease, transform .4s cubic-bezier(.22,1,.36,1); }
+.practice-accordion details[open] .practice-content { opacity: 1; transform: none; }
+.practice-accordion details.is-closing .practice-content { opacity: 0; transform: translateY(-8px); }
+.practice-content h3 { margin: 24px 0 10px; color: var(--yellow); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
+.practice-content ul { display: grid; gap: 8px; margin: 0; padding-left: 20px; }
+.team-contact { background: #fffaf2; }
+.team-contact-card { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 40px; padding: 64px 70px; border-radius: 34px; background: var(--green-700); color: var(--white); }
+.team-contact-card h2 { max-width: 720px; margin: 18px 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.7rem, 4.4vw, 4.5rem); font-weight: 500; line-height: 1.02; letter-spacing: -.04em; }
+.team-contact-card p:last-child { max-width: 680px; color: rgba(255,255,255,.72); }
+.team-page .site-footer a { text-decoration-color: rgba(242,209,127,.35); text-underline-offset: 4px; }
+
+@media (max-width: 1020px) {
+  .team-intro { padding-top: 135px; }
+  .team-intro-heading { grid-template-columns: 1fr; gap: 22px; }
+  .team-intro-heading > p:last-child { max-width: 760px; }
+  .professional-card, .professional-card-initials { grid-template-columns: 285px 1fr; }
+  .professional-card-initials .professional-portrait { grid-column: 1; }
+  .professional-card-initials .professional-content { grid-column: 2; }
+  .practice-grid { gap: 54px; }
+  .practice-heading { position: static; max-width: 760px; }
+}
+
+@media (max-width: 760px) {
+  .team-intro { padding-top: calc(112px + env(safe-area-inset-top)); }
+  .team-intro-heading { margin-bottom: 40px; }
+  .team-intro-heading h1 { font-size: clamp(2.55rem, 11.5vw, 3.5rem); }
+  .professional-card, .professional-card-initials { grid-template-columns: 1fr; border-radius: 26px; }
+  .professional-portrait, .professional-card-initials .professional-portrait { grid-column: 1; grid-row: 1; min-height: 350px; }
+  .professional-content, .professional-card-initials .professional-content { grid-column: 1; grid-row: 2; padding: 34px 24px 40px; }
+  .professional-heading { gap: 14px; }
+  .professional-heading h3 { font-size: 2.75rem; }
+  .professional-lead { font-size: 1.05rem; }
+  .initials-portrait { min-height: 330px; }
+  .practice-grid { gap: 34px; }
+  .practice-heading h2 { font-size: clamp(2.55rem, 11.5vw, 3.5rem); }
+  .practice-accordion summary { grid-template-columns: 34px 1fr 42px; gap: 10px; padding: 24px 0; }
+  .summary-copy strong { font-size: 1.35rem; }
+  .practice-content { padding: 0 0 28px 44px; }
+  .team-contact-card { grid-template-columns: 1fr; align-items: start; padding: 42px 26px; border-radius: 26px; }
+  .team-contact-card h2 { font-size: clamp(2.45rem, 11vw, 3.3rem); }
+  .team-contact-card .button { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .details-icon { transition: none; }
+}
