@@ -3,7 +3,6 @@ const menu = document.querySelector('[data-menu]');
 const menuToggle = document.querySelector('[data-menu-toggle]');
 const menuClose = document.querySelector('[data-menu-close]');
 const scrollTopFab = document.querySelector('[data-scroll-top]');
-const toast = document.querySelector('[data-toast]');
 
 const setScrollState = () => {
   header?.classList.toggle('scrolled', window.scrollY > 16);
@@ -111,11 +110,6 @@ accordionItems.forEach((detail) => {
 
     animateAccordion(detail, shouldOpen);
   });
-});
-
-document.querySelector('[data-contact-placeholder]')?.addEventListener('click', () => {
-  toast.classList.add('visible');
-  window.setTimeout(() => toast.classList.remove('visible'), 4200);
 });
 
 document.querySelector('[data-year]').textContent = new Date().getFullYear();
