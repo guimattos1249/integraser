@@ -9,7 +9,46 @@
     <title>Espaço IntegraSer | Terapias Especializadas em Guaratinguetá</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
-  </head>
+  <style>
+    /* Mantém o ícone dos indicadores de rolagem centralizado nos dois eixos. */
+    .scroll-hint > span {
+      display: inline-grid;
+      place-items: center;
+      padding: 0;
+      position: relative;
+      line-height: 0;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 0;
+      transform: none;
+    }
+
+    /* Seta dupla geométrica: não depende do alinhamento vertical da fonte. */
+    .scroll-hint > span::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 14px;
+      height: 8px;
+      background-color: currentColor;
+      clip-path: polygon(
+        0 50%,
+        4px 0,
+        4px 37.5%,
+        10px 37.5%,
+        10px 0,
+        14px 50%,
+        10px 100%,
+        10px 62.5%,
+        4px 62.5%,
+        4px 100%
+      );
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+  </style>
+</head>
   <body>
     <a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
 
@@ -27,6 +66,7 @@
         <nav id="menu-principal" class="main-nav" aria-label="Navegação principal" data-menu>
           <p class="nav-mobile-label" aria-hidden="true">Navegue pelo site</p>
           <a href="#sobre">O Espaço</a>
+          <a href="identidade-corporativa.html">Identidade</a>
           <a href="#especialidades">Especialidades</a>
           <a href="#abordagem">Nossa abordagem</a>
           <a href="colaboradores.html#equipe">Nossa equipe</a>
