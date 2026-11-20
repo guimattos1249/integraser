@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://guimattos1249.github.io/integraser/sitemap.xml
