@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- TODO antes de publicar: substitua DOMINIO-DO-SITE.example pelo domínio oficial em todas as URLs. -->
   <url>
-    <loc>https://guimattos1249.github.io/integraser/</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://DOMINIO-DO-SITE.example/</loc>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://guimattos1249.github.io/integraser/colaboradores.html</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://DOMINIO-DO-SITE.example/colaboradores.html</loc>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://guimattos1249.github.io/integraser/identidade-corporativa.html</loc>
-    <lastmod>2026-11-20</lastmod>
+    <loc>https://DOMINIO-DO-SITE.example/identidade-corporativa.html</loc>
+    <lastmod>2026-11-25</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
   </url>

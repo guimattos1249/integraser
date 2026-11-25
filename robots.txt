@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://guimattos1249.github.io/integraser/sitemap.xml
+# TODO antes de publicar: substitua DOMINIO-DO-SITE.example pelo domínio oficial.
+Sitemap: https://DOMINIO-DO-SITE.example/sitemap.xml
