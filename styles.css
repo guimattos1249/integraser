@@ -94,7 +94,11 @@ main section[id] { scroll-margin-top: 112px; }
 .orbit-two { width: 240px; height: 240px; left: -120px; bottom: 80px; }
 .hero-wave { position: absolute; left: -5%; right: -5%; bottom: -70px; height: 135px; background: var(--cream); border-radius: 50% 50% 0 0; }
 
-.intro-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 110px; align-items: start; }
+.intro-grid { display: grid; grid-template-columns: minmax(0, 1.08fr) minmax(320px, .92fr); gap: 88px; align-items: center; }
+.intro-content { display: grid; gap: 42px; }
+.intro-photo { position: relative; width: min(100%, 470px); margin: 0; justify-self: end; isolation: isolate; }
+.intro-photo::before { content: ""; position: absolute; inset: 22px -22px -22px 22px; z-index: -1; border-radius: 34px; background: var(--green-300); opacity: .55; }
+.intro-photo img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; object-position: center; border-radius: 34px; box-shadow: 0 28px 70px rgba(18,95,87,.18); }
 .section-heading h2, .approach-copy h2, .sensory-copy h2, .contact-copy h2 { font-size: clamp(2.7rem, 4.2vw, 4.7rem); }
 .intro-copy .lead { margin-top: 10px; font-size: 1.35rem; line-height: 1.55; color: var(--ink); }
 .intro-copy p:not(.lead) { color: var(--muted); }
@@ -281,6 +285,8 @@ main section[id] { scroll-margin-top: 112px; }
   .main-nav .button-label { display: inline; }
   .hero { padding-top: 130px; }
   .hero-grid, .intro-grid, .approach-grid, .sensory-grid, .faq-grid { grid-template-columns: 1fr; }
+  .intro-grid { gap: 54px; }
+  .intro-photo { width: min(100%, 520px); justify-self: center; }
   .hero-grid { text-align: center; }
   .hero .eyebrow, .hero-actions, .hero-points { justify-content: center; }
   .hero-copy { max-width: 780px; margin-inline: auto; }
@@ -326,7 +332,11 @@ main section[id] { scroll-margin-top: 112px; }
   .chip-two { right: -8%; }
   .chip-three { left: 1%; bottom: 3%; }
   .intro-grid, .approach-grid, .sensory-grid, .faq-grid { gap: 48px; }
-  .intro-copy { padding: 26px; border-radius: 24px; background: white; box-shadow: 0 18px 50px rgba(18,95,87,.08); }
+  .intro-content { display: contents; }
+  .intro-photo { order: 2; width: 100%; }
+  .intro-photo::before { inset: 14px -6px -14px 14px; border-radius: 26px; }
+  .intro-photo img { aspect-ratio: 4 / 5; border-radius: 26px; }
+  .intro-copy { order: 3; padding: 26px; border-radius: 24px; background: white; box-shadow: 0 18px 50px rgba(18,95,87,.08); }
   .intro-copy .lead { margin-top: 0; font-size: 1.16rem; }
   .section-heading h2, .approach-copy h2, .sensory-copy h2, .contact-copy h2 { font-size: clamp(2.35rem, 11vw, 3rem); }
   .section-heading.centered { margin-bottom: 36px; text-align: left; }
