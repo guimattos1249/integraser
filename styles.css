@@ -287,7 +287,7 @@ html.js .reveal.visible { opacity: 1; transform: none; }
   .main-nav > a:not(.button):hover, .main-nav > a:not(.button):focus-visible { color: var(--green-900); background: var(--green-100); transform: translateX(5px); }
   .main-nav > a:not(.button)::after { display: none; }
   .main-nav .button { width: 100%; margin-top: 8px; }
-  .main-nav .button-location { width: 100%; align-self: stretch; gap: 10px; margin-top: 2px; margin-left: 0; padding-inline: 26px; }
+  .main-nav .button-whatsapp + .button-location { width: 100%; align-self: stretch; gap: 10px; margin: 2px 0 0; padding-inline: 26px; }
   .main-nav .button-location .button-label { display: inline; }
   .main-nav .button-label { display: inline; }
   .hero { padding-top: 130px; }
