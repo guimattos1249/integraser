@@ -15,7 +15,7 @@
 .professional-heading { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px; }
 .profile-number { display: grid; flex: 0 0 auto; place-items: center; width: 46px; height: 46px; margin: 2px 0 0; border-radius: 50%; background: var(--green-100); color: var(--green-700); font-size: .78rem; font-weight: 900; }
 .professional-role { margin: 0 0 5px; color: var(--terracotta); font-size: .76rem; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
-.professional-heading h3 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.6rem, 4vw, 4.2rem); font-weight: 500; line-height: 1; letter-spacing: -.04em; }
+.professional-heading h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(2.6rem, 4vw, 4.2rem); font-weight: 500; line-height: 1; letter-spacing: -.04em; }
 .registration { margin: 10px 0 0; color: var(--muted); font-size: .82rem; font-weight: 700; }
 .professional-lead { margin: 0 0 14px; color: var(--ink); font-size: 1.08rem; line-height: 1.5; }
 .professional-content > p:not(.professional-lead) { color: var(--muted); }
@@ -27,7 +27,7 @@
 .qualification-block.compact > p:last-child { margin: 0; color: var(--muted); font-size: .92rem; }
 .professional-card-ana .professional-content { justify-content: flex-start; padding: clamp(30px, 3.2vw, 42px); }
 .professional-card-ana .professional-heading { margin-bottom: 14px; }
-.professional-card-ana .professional-heading h3 { font-size: clamp(2.6rem, 3.5vw, 3.65rem); }
+.professional-card-ana .professional-heading h2 { font-size: clamp(2.6rem, 3.5vw, 3.65rem); }
 .professional-card-ana .professional-lead { margin-bottom: 10px; font-size: 1rem; line-height: 1.42; }
 .professional-card-ana .professional-content > p:not(.professional-lead) { margin: 0; font-size: .94rem; line-height: 1.52; }
 .professional-card-ana .profile-tags { margin: 14px 0 18px; }
@@ -55,6 +55,7 @@
 .professional-note { margin: 32px 0 0; padding: 22px 0 0; border-top: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.62); font-size: .82rem; }
 .practice-photo { position: relative; grid-area: photo; width: min(100%, 420px); max-height: 560px; margin: 0; justify-self: center; isolation: isolate; }
 .practice-photo::before { content: ""; position: absolute; inset: 24px -24px -24px 24px; z-index: -1; border-radius: 34px; background: var(--green-300); opacity: .62; }
+.practice-photo picture { display: block; }
 .practice-photo img { display: block; width: 100%; max-height: 560px; aspect-ratio: 3 / 4; object-fit: cover; object-position: center; border-radius: 34px; box-shadow: 0 28px 70px rgba(0,0,0,.24); }
 .practice-accordion { grid-area: accordion; min-width: 0; max-width: 100%; margin-top: 88px; border-top: 1px solid rgba(255,255,255,.18); }
 .practice-accordion details { min-width: 0; overflow: hidden; border-bottom: 1px solid rgba(255,255,255,.18); }
@@ -109,7 +110,7 @@
   .professional-card-ana .qualification-block ul { grid-template-columns: 1fr; }
   .professional-card-ana .professional-portrait > img:not(.initials-symbol) { object-position: center 64%; transform: none; }
   .professional-heading { gap: 14px; }
-  .professional-heading h3 { font-size: 2.75rem; }
+  .professional-heading h2 { font-size: 2.75rem; }
   .professional-lead { font-size: 1.05rem; }
   .initials-portrait { min-height: 330px; }
   .team-page .scroll-top-fab { right: 18px; }

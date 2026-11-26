@@ -35,7 +35,7 @@
 .symbol-grid { display: grid; grid-template-columns: .92fr 1.08fr; align-items: center; gap: 100px; }
 .symbol-art { position: relative; min-height: 620px; display: grid; place-items: center; overflow: hidden; border-radius: 34px; background: var(--green-100); }
 .symbol-art img { position: relative; z-index: 2; width: min(78%, 470px); border-radius: 45%; mix-blend-mode: multiply; }
-.symbol-pattern { position: absolute; inset: 0; background: url("assets/padrao-sentidos.png") center/520px; opacity: .09; }
+.symbol-pattern { position: absolute; inset: 0; background: url("assets/padrao-sentidos.webp") center/520px; opacity: .09; }
 .symbol-copy h2 { margin: 0 0 38px; font-size: clamp(3rem, 4.7vw, 5rem); line-height: 1; }
 .symbol-list { border-top: 1px solid rgba(18,95,87,.16); }
 .symbol-list article { display: grid; grid-template-columns: 150px 1fr; gap: 26px; padding: 24px 0; border-bottom: 1px solid rgba(18,95,87,.16); }

@@ -1,8 +1,33 @@
+document.documentElement.classList.add('js');
+
+document.querySelectorAll('a[target="_blank"]').forEach((link) => {
+  const hint = ' (abre em nova aba)';
+  const explicitName = link.getAttribute('aria-label');
+  if (explicitName) {
+    const visibleText = link.textContent.trim().replace(/\s+/g, ' ');
+    const labelWithVisibleText = visibleText && !explicitName.includes(visibleText)
+      ? `${visibleText}. ${explicitName}`
+      : explicitName;
+    if (!labelWithVisibleText.includes('abre em nova aba')) link.setAttribute('aria-label', `${labelWithVisibleText}${hint}`);
+    return;
+  }
+  const accessibleHint = document.createElement('span');
+  accessibleHint.className = 'sr-only new-window-hint';
+  accessibleHint.textContent = hint;
+  link.append(accessibleHint);
+});
+
 const header = document.querySelector('[data-header]');
 const menu = document.querySelector('[data-menu]');
 const menuToggle = document.querySelector('[data-menu-toggle]');
 const menuClose = document.querySelector('[data-menu-close]');
 const scrollTopFab = document.querySelector('[data-scroll-top]');
+const menuFocusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+const menuInertTargets = [...document.body.children].filter((element) =>
+  !element.matches('header, script')
+);
+const authoredInertState = new Map(menuInertTargets.map((element) => [element, element.hasAttribute('inert')]));
+let menuReturnFocus = null;
 
 const setScrollState = () => {
   header?.classList.toggle('scrolled', window.scrollY > 16);
@@ -11,12 +36,27 @@ const setScrollState = () => {
 setScrollState();
 window.addEventListener('scroll', setScrollState, { passive: true });
 
-const setMenu = (open) => {
+const setMenu = (open, { restoreFocus = true } = {}) => {
+  if (!menu || !menuToggle) return;
+
+  if (open) menuReturnFocus = document.activeElement;
   menu.classList.toggle('open', open);
   header?.classList.toggle('menu-active', open);
   document.body.classList.toggle('menu-open', open);
-  menuToggle?.setAttribute('aria-expanded', String(open));
-  menuToggle?.querySelector('.sr-only').replaceChildren(open ? 'Fechar menu' : 'Abrir menu');
+  menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.querySelector('.sr-only')?.replaceChildren(open ? 'Fechar menu' : 'Abrir menu');
+
+  menuInertTargets.forEach((element) => {
+    if (open) element.setAttribute('inert', '');
+    else if (!authoredInertState.get(element)) element.removeAttribute('inert');
+  });
+
+  if (open) {
+    window.requestAnimationFrame(() => menu.querySelector(menuFocusableSelector)?.focus());
+  } else if (restoreFocus && menuReturnFocus instanceof HTMLElement) {
+    menuReturnFocus.focus();
+    menuReturnFocus = null;
+  }
 };
 
 menuToggle?.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
@@ -35,14 +75,37 @@ menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', (ev
 }));
 
 window.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && menu?.classList.contains('open')) {
+  if (!menu?.classList.contains('open')) return;
+
+  if (event.key === 'Escape') {
     setMenu(false);
-    menuToggle?.focus();
+    return;
+  }
+
+  if (event.key === 'Tab') {
+    const focusable = [...menu.querySelectorAll(menuFocusableSelector)].filter((element) =>
+      !element.hasAttribute('disabled') && element.getClientRects().length
+    );
+    if (!focusable.length) {
+      event.preventDefault();
+      menu.focus();
+      return;
+    }
+
+    const first = focusable[0];
+    const last = focusable.at(-1);
+    if (event.shiftKey && (document.activeElement === first || !menu.contains(document.activeElement))) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && (document.activeElement === last || !menu.contains(document.activeElement))) {
+      event.preventDefault();
+      first.focus();
+    }
   }
 });
 
 window.addEventListener('resize', () => {
-  if (window.innerWidth > 1020 && menu?.classList.contains('open')) setMenu(false);
+  if (window.innerWidth > 1020 && menu?.classList.contains('open')) setMenu(false, { restoreFocus: false });
 });
 
 scrollTopFab?.addEventListener('click', () => {
@@ -112,7 +175,8 @@ accordionItems.forEach((detail) => {
   });
 });
 
-document.querySelector('[data-year]').textContent = new Date().getFullYear();
+const year = document.querySelector('[data-year]');
+if (year) year.textContent = new Date().getFullYear();
 
 const reviewsList = document.querySelector('[data-reviews-list]');
 const reviewsStatus = document.querySelector('[data-reviews-status]');
@@ -125,6 +189,7 @@ const reviewsPrev = document.querySelector('[data-reviews-prev]');
 const reviewsNext = document.querySelector('[data-reviews-next]');
 const reviewsLocalFallback = document.querySelector('#reviews-local-fallback');
 let reviewAnimationTimer;
+let announceReviewCount = false;
 
 const createUserIcon = () => {
   const wrapper = document.createElement('span');
@@ -147,6 +212,7 @@ const createReviewCard = (review) => {
   name.textContent = review.author;
   const stars = document.createElement('span');
   stars.className = 'review-stars';
+  stars.setAttribute('role', 'img');
   stars.setAttribute('aria-label', `${review.rating} de 5 estrelas`);
   stars.textContent = '★'.repeat(review.rating);
   authorCopy.append(name, stars);
@@ -180,9 +246,11 @@ const updateReviewControls = () => {
   const visibleCards = cardWidth ? Math.max(1, Math.round(reviewsList.clientWidth / cardWidth)) : 1;
   const firstVisible = Math.min(index + 1, cards.length);
   const lastVisible = Math.min(index + visibleCards, cards.length);
-  reviewsCount.textContent = firstVisible === lastVisible
+  const nextCount = firstVisible === lastVisible
     ? `${firstVisible} de ${cards.length}`
     : `${firstVisible}–${lastVisible} de ${cards.length}`;
+  reviewsCount.setAttribute('aria-live', announceReviewCount ? 'polite' : 'off');
+  if (reviewsCount.textContent !== nextCount) reviewsCount.textContent = nextCount;
   reviewsPrev.disabled = reviewsList.scrollLeft < 4;
   reviewsNext.disabled = reviewsList.scrollLeft + reviewsList.clientWidth >= reviewsList.scrollWidth - 4;
 };
@@ -208,8 +276,13 @@ const scrollReviews = (direction) => {
   reviewsList?.scrollBy({ left: direction * amount, behavior: prefersReducedMotion.matches ? 'auto' : 'smooth' });
   window.clearTimeout(reviewAnimationTimer);
   reviewAnimationTimer = window.setTimeout(() => {
+    announceReviewCount = true;
     updateReviewControls();
     animateVisibleReviewCards();
+    window.setTimeout(() => {
+      announceReviewCount = false;
+      reviewsCount?.setAttribute('aria-live', 'off');
+    }, 1000);
   }, prefersReducedMotion.matches ? 0 : 420);
 };
 
@@ -220,6 +293,7 @@ window.addEventListener('resize', updateReviewControls);
 
 const loadReviews = async () => {
   if (!reviewsList) return;
+  reviewsStatus.hidden = false;
 
   try {
     let data;
