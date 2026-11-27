@@ -35,6 +35,7 @@
 .professional-card-ana .qualification-block > p:first-child { margin-bottom: 10px; }
 .professional-card-ana .qualification-block ul { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 24px; font-size: .82rem; line-height: 1.4; }
 .professional-card-ana .professional-portrait > img:not(.initials-symbol) { transform: scale(1.42); transform-origin: center 68%; }
+.professional-card-ingrid .professional-portrait > img:not(.initials-symbol) { object-position: left 32%; }
 .professional-card-initials, .professional-card-reverse { grid-template-columns: 1.45fr minmax(285px, .72fr); }
 .professional-card-initials .professional-portrait, .professional-card-reverse .professional-portrait { grid-column: 2; grid-row: 1; }
 .professional-card-initials .professional-content, .professional-card-reverse .professional-content { grid-column: 1; grid-row: 1; }
@@ -109,6 +110,7 @@
   .professional-card-ana .professional-content { padding: 30px 24px 34px; }
   .professional-card-ana .qualification-block ul { grid-template-columns: 1fr; }
   .professional-card-ana .professional-portrait > img:not(.initials-symbol) { object-position: center 64%; transform: none; }
+  .professional-card-ingrid .professional-portrait > img:not(.initials-symbol) { object-position: left 8%; }
   .professional-heading { gap: 14px; }
   .professional-heading h2 { font-size: 2.75rem; }
   .professional-lead { font-size: 1.05rem; }
